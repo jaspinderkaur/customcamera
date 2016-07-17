@@ -11,16 +11,12 @@
     tools:context="com.example.customcamera.MainActivity"
     tools:showIn="@layout/activity_main">
 
-  <HorizontalScrollView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-    <LinearLayout
-        android:id="@+id/llGallery"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvGallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
     />
-  </HorizontalScrollView>
 </RelativeLayout>
