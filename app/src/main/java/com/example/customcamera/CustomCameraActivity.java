@@ -1,5 +1,6 @@
 package com.example.customcamera;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -61,12 +62,7 @@ public class CustomCameraActivity extends AppCompatActivity implements OnClickLi
     mGrid = (ImageView) findViewById(R.id.ivGrid);
     mCameraInfo = (ImageView) findViewById(R.id.ivCaptureInfo);
     mGridLayout = (RelativeLayout) findViewById(R.id.rlGrid);
-    //initialize grid parameters
-    mHorizontalLine1 = findViewById(R.id.vHorizontalLine1);
-    mHorizontalLine2 = findViewById(R.id.vHorizontalLine2);
-    mHorizontalLine3 = findViewById(R.id.vHorizontalLine3);
-    mVerticalLine1 = findViewById(R.id.vVerticalLine1);
-    mVerticalLine2 = findViewById(R.id.vVerticalLine2);
+
     //Set up click listeners
     mGallery.setOnClickListener(this);
     mCancel.setOnClickListener(this);
@@ -147,6 +143,7 @@ public class CustomCameraActivity extends AppCompatActivity implements OnClickLi
         }
         break;
       case R.id.ivGallery:
+        finish();
         break;
     }
   }
@@ -212,13 +209,6 @@ public class CustomCameraActivity extends AppCompatActivity implements OnClickLi
   @Override
   protected void onPause() {
     super.onPause();
-    releaseCamera();              // release the camera immediately on pause event
-  }
-
-  private void releaseCamera() {
-    if (mCamera != null) {
-      mCamera.release();        // release the camera for other applications
-      mCamera = null;
-    }
+    releaseCameraAndPreview();              // release the camera immediately on pause event
   }
 }
