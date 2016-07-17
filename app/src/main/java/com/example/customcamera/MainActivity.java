@@ -1,5 +1,7 @@
 package com.example.customcamera;
 
+import android.Manifest;
+import android.Manifest.permission;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,7 +12,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.customcamera.helper.RuntimePermissionsActivity;
+
+public class MainActivity extends RuntimePermissionsActivity {
+
+  private static final int REQUEST_PERMISSIONS = 20;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +29,19 @@ public class MainActivity extends AppCompatActivity {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent cameraIntent = new Intent(MainActivity.this, CustomCameraActivity.class);
-        startActivity(cameraIntent);
+        MainActivity.super.requestAppPermissions(new
+                String[]{permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE}, R.string
+                .camera_permissions_denied
+            , REQUEST_PERMISSIONS);
       }
     });
+  }
+
+  @Override
+  public void onPermissionsGranted(int requestCode) {
+    Intent cameraIntent = new Intent(MainActivity.this, CustomCameraActivity.class);
+    startActivity(cameraIntent);
   }
 
   @Override
