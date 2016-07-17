@@ -1,4 +1,4 @@
-package com.example.customcamera;
+package com.example.customcamera.controller;
 
 import android.content.Context;
 import android.hardware.Camera;

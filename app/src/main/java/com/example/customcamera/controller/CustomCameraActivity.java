@@ -1,6 +1,5 @@
-package com.example.customcamera;
+package com.example.customcamera.controller;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -16,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.example.customcamera.R;
 import com.example.customcamera.helper.CameraHelper;
 
 import java.io.File;

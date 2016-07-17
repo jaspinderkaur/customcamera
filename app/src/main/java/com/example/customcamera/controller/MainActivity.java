@@ -1,4 +1,4 @@
-package com.example.customcamera;
+package com.example.customcamera.controller;
 
 import android.Manifest;
 import android.Manifest.permission;
@@ -6,21 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.example.customcamera.R;
 import com.example.customcamera.adapter.GalleryImageAdapter;
-import com.example.customcamera.helper.CameraHelper;
 import com.example.customcamera.helper.RuntimePermissionsActivity;
 import com.example.customcamera.model.GalleryItem;
 
@@ -30,6 +26,7 @@ import java.util.List;
 
 public class MainActivity extends RuntimePermissionsActivity {
 
+  private TextView mMessage;
   private RecyclerView mGallery;
   private GalleryImageAdapter mAdapter;
   private List<GalleryItem> mImageList = new ArrayList<>();
@@ -42,6 +39,8 @@ public class MainActivity extends RuntimePermissionsActivity {
     setContentView(R.layout.activity_main);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+
+    mMessage = (TextView) findViewById(R.id.tvMessage);
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
@@ -63,12 +62,8 @@ public class MainActivity extends RuntimePermissionsActivity {
 
     String ExternalStorageDirectoryPath = Environment.getExternalStoragePublicDirectory(
         Environment.DIRECTORY_PICTURES).getAbsolutePath();
-
     String targetPath = ExternalStorageDirectoryPath + "/MyCameraApp/";
-
-    Toast.makeText(getApplicationContext(), targetPath, Toast.LENGTH_LONG).show();
     File targetDirector = new File(targetPath);
-
     File[] files = targetDirector.listFiles();
     mImageList.clear();
     if (files != null) {
@@ -76,6 +71,7 @@ public class MainActivity extends RuntimePermissionsActivity {
         mImageList.add(new GalleryItem(file.getAbsolutePath()));
       }
     }
+    mMessage.setVisibility(mImageList.isEmpty() ? View.VISIBLE : View.GONE);
     if (mAdapter != null) {
       mAdapter.notifyDataSetChanged();
     }
