@@ -2,4 +2,5 @@
   <string name="app_name">Custom Camera</string>
   <string name="action_settings">Settings</string>
   <string name="camera_permissions_denied">Camera permissions denied.</string>
+  <string name="help_text">Click on the camera below and start capturing moments.</string>
 </resources>
