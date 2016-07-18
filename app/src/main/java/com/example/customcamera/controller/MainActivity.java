@@ -32,6 +32,7 @@ public class MainActivity extends RuntimePermissionsActivity {
   private List<GalleryItem> mImageList = new ArrayList<>();
 
   private static final int REQUEST_PERMISSIONS = 20;
+  private static final String MY_FOLDER = "MyCameraApp";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,8 @@ public class MainActivity extends RuntimePermissionsActivity {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        MainActivity.super.requestAppPermissions(new
-                String[]{permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE}, R.string
-                .camera_permissions_denied
+        MainActivity.super.requestAppPermissions(new String[]{permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE}, R.string.camera_permissions_denied
             , REQUEST_PERMISSIONS);
       }
     });
@@ -59,10 +58,13 @@ public class MainActivity extends RuntimePermissionsActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    getGalleryImageList();
+  }
 
+  private void getGalleryImageList() {
     String ExternalStorageDirectoryPath = Environment.getExternalStoragePublicDirectory(
         Environment.DIRECTORY_PICTURES).getAbsolutePath();
-    String targetPath = ExternalStorageDirectoryPath + "/MyCameraApp/";
+    String targetPath = ExternalStorageDirectoryPath + "/" + MY_FOLDER + "/";
     File targetDirector = new File(targetPath);
     File[] files = targetDirector.listFiles();
     mImageList.clear();
@@ -89,27 +91,5 @@ public class MainActivity extends RuntimePermissionsActivity {
   public void onPermissionsGranted(int requestCode) {
     Intent cameraIntent = new Intent(MainActivity.this, CustomCameraActivity.class);
     startActivity(cameraIntent);
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main, menu);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
-
-    return super.onOptionsItemSelected(item);
   }
 }

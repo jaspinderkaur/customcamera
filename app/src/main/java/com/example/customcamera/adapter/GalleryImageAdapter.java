@@ -2,8 +2,11 @@ package com.example.customcamera.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.customcamera.R;
+import com.example.customcamera.helper.CameraHelper;
 import com.example.customcamera.model.GalleryItem;
 
 import java.util.Collections;
@@ -30,8 +34,7 @@ public class GalleryImageAdapter extends RecyclerView.Adapter<GalleryImageAdapte
 
   @Override
   public GalleryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_gallery_item,
-        parent, false);
+    View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_gallery_item, parent, false);
     return new GalleryViewHolder(v);
   }
 

@@ -81,9 +81,11 @@ public class CustomCameraActivity extends AppCompatActivity implements OnClickLi
     FrameLayout cameraPreviewLayout = (FrameLayout) findViewById(R.id.flCameraPreview);
     cameraPreviewLayout.removeAllViews();
     mCamera = getCameraInstance();
-    mCameraPreview = new CameraPreview(this, mCamera);
-    cameraPreviewLayout.addView(mCameraPreview);
-    findViewById(R.id.bButtonCapture).setOnClickListener(this);
+    if (mCamera != null) {
+      mCameraPreview = new CameraPreview(this, mCamera, mFlashMode);
+      cameraPreviewLayout.addView(mCameraPreview);
+      findViewById(R.id.bButtonCapture).setOnClickListener(this);
+    }
   }
 
   /**
@@ -172,9 +174,9 @@ public class CustomCameraActivity extends AppCompatActivity implements OnClickLi
         } catch (Exception e) {
           // ignore: tried to stop a non-existent preview
         }
-        if (safeCameraOpen(0)) {
-          startCamera();
-        }
+        releaseCameraAndPreview();
+        startCamera();
+
       } catch (FileNotFoundException e) {
         Log.d(TAG, "File not found: " + e.getMessage());
       } catch (IOException e) {
@@ -182,21 +184,6 @@ public class CustomCameraActivity extends AppCompatActivity implements OnClickLi
       }
     }
   };
-
-  private boolean safeCameraOpen(int id) {
-    boolean qOpened = false;
-
-    try {
-      releaseCameraAndPreview();
-      mCamera = Camera.open(id);
-      qOpened = (mCamera != null);
-    } catch (Exception e) {
-      Log.e(getString(R.string.app_name), "failed to open Camera");
-      e.printStackTrace();
-    }
-
-    return qOpened;
-  }
 
   private void releaseCameraAndPreview() {
     mCameraPreview.setCamera(null);
