@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+  <RelativeLayout
+      android:id="@+id/rlCameraPreview"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"/>
+  <RelativeLayout
+      android:id="@+id/rlGrid"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+      <RelativeLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+
+        <View
+            android:id="@+id/vVerticalLine1"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/customCameraGridColor"/>
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+
+        <View
+            android:id="@+id/vVerticalLine2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/customCameraGridColor"/>
+      </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1">
+
+        <View
+            android:id="@+id/vHorizontalLine1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/customCameraGridColor"/>
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1">
+
+        <View
+            android:id="@+id/vHorizontalLine2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/customCameraGridColor"/>
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1">
+
+        <View
+            android:id="@+id/vHorizontalLine3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/customCameraGridColor"/>
+      </RelativeLayout>
+
+    </LinearLayout>
+  </RelativeLayout>
+  <ImageView
+      android:id="@+id/ivCancel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/capture_action_margin"
+      android:layout_marginStart="@dimen/capture_action_margin"
+      android:layout_marginTop="@dimen/capture_action_margin"
+      android:scaleType="fitCenter"
+      android:src="@drawable/capture_close"/>
+
+  <ImageView
+      android:id="@+id/ivFlash"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_marginEnd="@dimen/capture_action_margin"
+      android:layout_marginRight="@dimen/capture_action_margin"
+      android:layout_marginTop="@dimen/capture_action_margin"
+      android:src="@drawable/capture_flash_on_auto"
+      android:tag="auto"/>
+
+  <ImageView
+      android:id="@+id/ivGrid"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginTop="@dimen/capture_action_margin"
+      android:layout_toLeftOf="@+id/ivFlash"
+      android:layout_toStartOf="@+id/ivFlash"
+      android:src="@drawable/capture_grid_on"
+      android:tag="on"/>
+
+  <ImageView
+      android:id="@+id/ivCaptureInfo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginTop="@dimen/capture_action_margin"
+      android:layout_toLeftOf="@+id/ivGrid"
+      android:layout_toStartOf="@+id/ivGrid"
+      android:src="@drawable/capture_info_off"/>
+  <RelativeLayout
+      android:id="@+id/rlCaptureButtonBar"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/capture_tab_height"
+      android:layout_alignParentBottom="true">
+
+    <ImageView
+        android:id="@+id/ivGallery"
+        android:layout_width="@dimen/last_click_width"
+        android:layout_height="@dimen/last_click_width"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/last_click_margin"
+        android:layout_marginLeft="@dimen/last_click_margin"
+        android:layout_marginStart="@dimen/last_click_margin"
+        android:background="@android:color/white"/>
+
+    <ImageButton
+        android:id="@+id/bButtonCapture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:clickable="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/custom_capture_button"/>
+  </RelativeLayout>
+</RelativeLayout>

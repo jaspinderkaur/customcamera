@@ -3,4 +3,10 @@
   <dimen name="activity_horizontal_margin">16dp</dimen>
   <dimen name="activity_vertical_margin">16dp</dimen>
   <dimen name="fab_margin">16dp</dimen>
+
+  <!-- custom camera dimensions -->
+  <dimen name="capture_action_margin">15dp</dimen>
+  <dimen name="last_click_width">30dp</dimen>
+  <dimen name="last_click_margin">18dp</dimen>
+  <dimen name="capture_tab_height">70dp</dimen>
 </resources>
